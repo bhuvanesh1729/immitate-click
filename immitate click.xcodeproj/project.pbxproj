@@ -1,0 +1,163 @@
+// !$*UTF8*$!
+{
+    archiveVersion = 1;
+    classes = {};
+    objectVersion = 56;
+    objects = {
+        100000000000000000000009 = {isa = PBXBuildFile; fileRef = 100000000000000000000007; };
+        10000000000000000000000A = {isa = PBXBuildFile; fileRef = 100000000000000000000008; };
+
+        100000000000000000000005 = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "immitate click.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+        100000000000000000000006 = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+        100000000000000000000007 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+        100000000000000000000008 = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeepAwakeController.swift; sourceTree = "<group>"; };
+
+        100000000000000000000002 = {
+            isa = PBXGroup;
+            children = (100000000000000000000003, 100000000000000000000006, 100000000000000000000004);
+            sourceTree = "<group>";
+        };
+        100000000000000000000003 = {
+            isa = PBXGroup;
+            children = (100000000000000000000007, 100000000000000000000008);
+            path = Sources;
+            sourceTree = "<group>";
+        };
+        100000000000000000000004 = {
+            isa = PBXGroup;
+            children = (100000000000000000000005);
+            name = Products;
+            sourceTree = "<group>";
+        };
+
+        10000000000000000000000B = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (100000000000000000000009, 10000000000000000000000A);
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        10000000000000000000000C = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = ();
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        10000000000000000000000D = {
+            isa = PBXResourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = ();
+            runOnlyForDeploymentPostprocessing = 0;
+        };
+        10000000000000000000000E = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = 100000000000000000000010;
+            buildPhases = (10000000000000000000000B, 10000000000000000000000C, 10000000000000000000000D);
+            buildRules = ();
+            dependencies = ();
+            name = "immitate click";
+            productName = "immitate click";
+            productReference = 100000000000000000000005;
+            productType = "com.apple.product-type.application";
+        };
+        100000000000000000000001 = {
+            isa = PBXProject;
+            attributes = {
+                BuildIndependentTargetsInParallel = YES;
+                LastUpgradeCheck = 2660;
+                TargetAttributes = {
+                    10000000000000000000000E = {
+                        CreatedOnToolsVersion = 26.6;
+                        DevelopmentTeam = F9QV287GM7;
+                        ProvisioningStyle = Manual;
+                    };
+                };
+            };
+            buildConfigurationList = 10000000000000000000000F;
+            compatibilityVersion = "Xcode 14.0";
+            developmentRegion = en;
+            hasScannedForEncodings = 0;
+            knownRegions = (en, Base);
+            mainGroup = 100000000000000000000002;
+            productRefGroup = 100000000000000000000004;
+            projectDirPath = "";
+            projectRoot = "";
+            targets = (10000000000000000000000E);
+        };
+        10000000000000000000000F = {
+            isa = XCConfigurationList;
+            buildConfigurations = (100000000000000000000011, 100000000000000000000012);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        100000000000000000000010 = {
+            isa = XCConfigurationList;
+            buildConfigurations = (100000000000000000000013, 100000000000000000000014);
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        100000000000000000000011 = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                CLANG_ENABLE_MODULES = YES;
+                MACOSX_DEPLOYMENT_TARGET = 13.0;
+                SDKROOT = macosx;
+                SWIFT_VERSION = 5.0;
+            };
+            name = Debug;
+        };
+        100000000000000000000012 = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                CLANG_ENABLE_MODULES = YES;
+                MACOSX_DEPLOYMENT_TARGET = 13.0;
+                SDKROOT = macosx;
+                SWIFT_VERSION = 5.0;
+            };
+            name = Release;
+        };
+        100000000000000000000013 = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ARCHS = arm64;
+                CODE_SIGN_IDENTITY = "-";
+                CODE_SIGN_STYLE = Manual;
+                DEBUG_INFORMATION_FORMAT = dwarf;
+                GENERATE_INFOPLIST_FILE = NO;
+                INFOPLIST_FILE = Info.plist;
+                PRODUCT_BUNDLE_IDENTIFIER = "local.immitate-click";
+                PRODUCT_NAME = "immitate click";
+                SUPPORTED_PLATFORMS = macosx;
+                SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+            };
+            name = Debug;
+        };
+        100000000000000000000014 = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ARCHS = arm64;
+                CODE_SIGN_IDENTITY = "Developer ID Application";
+                CODE_SIGN_INJECT_BASE_ENTITLEMENTS = NO;
+                CODE_SIGN_STYLE = Manual;
+                DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+                DEVELOPMENT_TEAM = F9QV287GM7;
+                ENABLE_APP_SANDBOX = NO;
+                ENABLE_HARDENED_RUNTIME = YES;
+                GENERATE_INFOPLIST_FILE = NO;
+                INFOPLIST_FILE = Info.plist;
+                INSTALL_PATH = "$(LOCAL_APPS_DIR)";
+                ONLY_ACTIVE_ARCH = NO;
+                OTHER_CODE_SIGN_FLAGS = "--timestamp";
+                PRODUCT_BUNDLE_IDENTIFIER = "local.immitate-click";
+                PRODUCT_NAME = "immitate click";
+                SKIP_INSTALL = NO;
+                STRIP_INSTALLED_PRODUCT = YES;
+                SUPPORTED_PLATFORMS = macosx;
+                SWIFT_COMPILATION_MODE = wholemodule;
+                SWIFT_OPTIMIZATION_LEVEL = "-O";
+                SWIFT_SERIALIZE_DEBUGGING_OPTIONS = NO;
+            };
+            name = Release;
+        };
+    };
+    rootObject = 100000000000000000000001;
+}

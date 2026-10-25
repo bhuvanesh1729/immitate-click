@@ -2,16 +2,24 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 APP="$PWD/build/immitate click.app"
-DMG="$PWD/build/immitate-click-1.0.0-arm64.dmg"
+: "${SIGNING_IDENTITY:?Set SIGNING_IDENTITY to your Developer ID Application identity}"
 test -d "$APP"
+APP_VERSION="$(/usr/bin/plutil -extract CFBundleShortVersionString raw "$APP/Contents/Info.plist")"
+DMG="$PWD/build/immitate-click-$APP_VERSION-arm64.dmg"
 /usr/bin/codesign --verify --strict "$APP"
+SIGNATURE_INFO="$(/usr/bin/codesign -dv --verbose=2 "$APP" 2>&1)"
+echo "$SIGNATURE_INFO" | /usr/bin/grep -q '^Authority=Developer ID Application:'
+echo "$SIGNATURE_INFO" | /usr/bin/grep -q 'flags=.*runtime'
+APP_TEAM="$(echo "$SIGNATURE_INFO" | /usr/bin/sed -n 's/^TeamIdentifier=//p')"
+xcrun stapler validate "$APP"
 STAGING="$(mktemp -d "$PWD/build/dmg-staging.XXXXXX")"
 trap 'rm -rf "$STAGING"' EXIT
 chmod 755 "$STAGING"
 /usr/bin/ditto --noextattr --noqtn "$APP" "$STAGING/immitate click.app"
+xcrun stapler validate "$STAGING/immitate click.app"
 ln -s /Applications "$STAGING/Applications"
 cat > "$STAGING/Read Me.txt" <<'EOF'
-immitate click 1.0.0
+immitate click
 Apple silicon Mac, macOS 13 or later
 
 Drag immitate click.app to Applications if you choose to install it.
@@ -21,11 +29,16 @@ Click Stop, close the window, or quit to end keep-awake.
 Automatic lock and password policies still apply. No clicks or mouse
 movement are simulated. No startup items or helpers are installed.
 
-This is a locally ad-hoc signed build. It is not Developer ID signed
-or notarized by Apple. macOS may restrict opening a downloaded copy.
+The app is Developer ID signed and notarized by Apple. Standard
+macOS security checks and organization policies still apply.
 EOF
 /usr/bin/hdiutil create -ov -format UDZO -fs HFS+ -volname "immitate click" \
     -nospotlight -anyowners -srcowners off -srcfolder "$STAGING" "$DMG"
+/usr/bin/codesign --force --sign "$SIGNING_IDENTITY" --timestamp "$DMG"
+/usr/bin/codesign --verify --strict "$DMG"
+DMG_SIGNATURE="$(/usr/bin/codesign -dv --verbose=2 "$DMG" 2>&1)"
+echo "$DMG_SIGNATURE" | /usr/bin/grep -q '^Authority=Developer ID Application:'
+echo "$DMG_SIGNATURE" | /usr/bin/grep -Fxq "TeamIdentifier=$APP_TEAM"
 /usr/bin/hdiutil verify "$DMG"
 /usr/bin/shasum -a 256 "$DMG"
 echo "Packaged $DMG"

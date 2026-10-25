@@ -1,4 +1,11 @@
-# immitate click 1.0.0
+# immitate click 1.0.1
+
+Repairs distribution signing: Developer ID signature, hardened runtime, secure
+timestamp, and Apple notarization with stapled tickets. Replaces the original
+ad-hoc distribution; v1.0.0 remains available for historical reference.
+
+Includes a minimal Xcode project and shared scheme for Archive and Organizer
+distribution, using the existing source files without behavior changes.
 
 Minimal native macOS app with Start, Stop, and Active/Inactive status.
 
@@ -10,13 +17,13 @@ Minimal native macOS app with Start, Stop, and Active/Inactive status.
 ## Requirements and download
 
 Apple silicon Mac running macOS 13 or later. Download
-`immitate-click-1.0.0-arm64.dmg` and verify it using the accompanying
+`immitate-click-1.0.1-arm64.dmg` and verify it using the accompanying
 `SHA256SUMS.txt`. The DMG contains the app, an Applications shortcut, and brief
 usage notes.
 
-This build is ad-hoc signed. It is **not Developer ID signed or notarized by
-Apple**, and macOS may restrict opening a downloaded copy. It is intended as a
-local utility; distribution does not imply Apple approval.
+This release is Developer ID signed and notarized by Apple. Standard macOS
+security checks and organization policies still apply. Notarization does not
+imply an App Store review or an endorsement by Apple.
 
 ## Verification
 
